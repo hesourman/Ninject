@@ -34,10 +34,45 @@ namespace Ninject
     {
         private readonly IDictionary<string, object> values = new Dictionary<string, object>();
 
-        /// <summary>
-        /// Gets or sets the attribute that indicates that a member should be injected.
-        /// </summary>
-        public Type InjectAttribute
+
+		/// <summary>
+		/// Gets a value indicating whether attributed methods should be injected.
+		/// </summary>
+		/// <value>
+		///   <c>true</c> if methods should be injected; otherwise, <c>false</c>.
+		/// </value>
+		/// <remarks>
+		/// Method injection may not be supported in applications compiled with
+		/// the native tool chain.
+		/// </remarks>
+		public bool InjectMethods
+		{
+			get { return this.Get( "InjectMethods", true ); }
+			set { this.Set( "InjectMethods", value ); }
+		}
+
+		/// <summary>
+		/// Gets a value indicating whether attributed properties should be injected.
+		/// </summary>
+		/// <value>
+		///   <c>true</c> if properties should be injected; otherwise, <c>false</c>.
+		/// </value>
+		/// <remarks>
+		/// Property injection may not be supported in applications compiled with
+		/// the native tool chain.
+		/// </remarks>
+		public bool InjectProperties
+		{
+			get { return this.Get( "InjectProperties", true ); }
+			set { this.Set( "InjectProperties", value ); }
+		}
+
+
+
+		/// <summary>
+		/// Gets or sets the attribute that indicates that a member should be injected.
+		/// </summary>
+		public Type InjectAttribute
         {
             get { return this.Get("InjectAttribute", typeof(InjectAttribute)); }
             set { this.Set("InjectAttribute", value); }
